@@ -13,12 +13,12 @@
 | first_name         | string     | null: false                    |
 | last_name_kana     | string     | null: false                    |
 | first_name_kana    | string     | null: false                    |
-| birth_date         | integer    | null: false                    |
+| birth_date         | date       | null: false                    |
 
 ### Association
 
 - has_many :items
-- has_one :payment
+- has_many :payments
 
 ## items テーブル
 
@@ -37,21 +37,33 @@
 ### Association
 
 - belongs_to :user
-- has_one :payment
+- has_one    :payment
 
 ## payments テーブル
 
 | Column        | Type        | Options                        |
 | ------------- | ----------- | ------------------------------ |
-| postal_code   | integer     | null: false                    |
+| item          | references  | null: false, foreign_key: true |
+| user          | references  | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :item
+- belongs_to :user
+- has_one    :payment_infomations
+
+## payment_infomations テーブル
+
+| Column        | Type        | Options                        |
+| ------------- | ----------- | ------------------------------ |
+| postal_code   | string      | null: false                    |
 | prefecture_id | integer     | null: false                    |
 | city          | string      | null: false                    |
 | address       | string      | null: false                    |
 | building      | string      |                                |
 | phone_number  | string      | null: false                    |
-| item          | references  | null: false, foreign_key: true |
-| user          | references  | null: false, foreign_key: true |
+| payment       | references  | null: false                    |
+
 ### Association
 
-- belongs_to :item
-- belongs_to :user
+- belongs_to :payment
