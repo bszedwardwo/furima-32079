@@ -50,7 +50,7 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one    :payment_infomations
+- has_one    :payment_infomation
 
 ## payment_infomations テーブル
 
