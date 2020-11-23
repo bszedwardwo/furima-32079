@@ -165,3 +165,26 @@ RSpec.describe 'トップページ', type: :system do
     expect(page).to have_content('ログアウト')
   end
 end
+
+RSpec.describe 'サインアウト時の新規出品ページへのアクセス', type: :system do
+  before do
+    @user = FactoryBot.build(:user)
+  end
+  it 'サインイン時は新規出品ページにアクセスできる' do
+    # ユーザー新規登録画面に遷移する
+    visit new_user_registration_path
+    # ユーザー情報を入力する
+    sign_in(@user)
+    # 新規出品ページに遷移する
+    click_on '出品する'
+    # 遷移できてることを確認する
+    expect(current_path).to eq new_item_path
+  end
+  it 'サインアウト時は新規出品ページにアクセスするとサインインページに遷移する' do
+    # 新規出品ページに遷移する
+    visit root_path
+    click_on '出品する'
+    # サインインページにいることを確認する
+    expect(current_path).to eq new_user_session_path
+  end
+end
