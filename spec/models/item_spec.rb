@@ -9,15 +9,15 @@ RSpec.describe Item, type: :model do
       expect(@item).to be_valid
     end
     it '商品名が40文字いないなら登録できる' do
-      @item.name = 'faohgaeofanaog'
+      @item.name = '後ディア'
       expect(@item).to be_valid
     end
     it '商品説明が1000文字いないなら登録できる' do
-      @item.info = 'gajoigahgaofianheilfnglieugbnalinuhwfba'
+      @item.info = 'ゴディバ'
       expect(@item).to be_valid
     end
     it '値段が300~9999999の間なら登録できる' do
-      @item.price = '999999'
+      @item.price = 999999
       expect(@item).to be_valid
     end
   end
@@ -33,7 +33,7 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Name can't be blank")
     end
     it '商品名が41文字以上の時' do
-      @item.name = 'adddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafo'
+      @item.name = 'a' * 41
       @item.valid?
       expect(@item.errors.full_messages).to include('Name is too long (maximum is 40 characters)')
     end
@@ -43,10 +43,7 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Info can't be blank")
     end
     it '商品の説明が1001文字以上の時' do
-      @item.info = 'adddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoaddddddddd
-      ddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgn
-      adddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafo
-      eihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafo'
+      @item.info = 'a' * 1001
       @item.valid?
       expect(@item.errors.full_messages).to include('Info is too long (maximum is 1000 characters)')
     end
@@ -81,14 +78,14 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Price can't be blank")
     end
     it '価格が300より少ない時' do
-      @item.price = '299'
+      @item.price = 299
       @item.valid?
-      expect(@item.errors.full_messages).to include('Price must be greater than 300')
+      expect(@item.errors.full_messages).to include('Price must be greater than 299')
     end
     it '価格が9999999より多い時' do
-      @item.price = '10000000'
+      @item.price = 10000000
       @item.valid?
-      expect(@item.errors.full_messages).to include('Price must be less than 9999999')
+      expect(@item.errors.full_messages).to include('Price must be less than 10000000')
     end
     it '価格が半角数字じゃない時' do
       @item.price = '渡辺'
