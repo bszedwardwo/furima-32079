@@ -148,18 +148,7 @@ RSpec.describe 'トップページ', type: :system do
     # ユーザー新規登録画面に遷移する
     visit new_user_registration_path
     # ユーザー情報を入力する
-    fill_in 'nickname', with: @user.nickname
-    fill_in 'email', with: @user.email
-    fill_in 'password', with: @user.password
-    fill_in 'password-confirmation', with: @user.password_confirmation
-    fill_in 'last-name', with: @user.last_name
-    fill_in 'first-name', with: @user.first_name
-    fill_in 'last-name-kana', with: @user.last_name_kana
-    fill_in 'first-name-kana', with: @user.first_name_kana
-    select '1930', from: 'user[birth_date(1i)]'
-    select '12', from: 'user[birth_date(2i)]'
-    select '12', from: 'user[birth_date(3i)]'
-    click_button '会員登録'
+    sign_in(@user)
     # トップページに移動する
     visit root_path
     # ユーザーのニックネームボタンがあることを確認する
@@ -169,18 +158,7 @@ RSpec.describe 'トップページ', type: :system do
     # ユーザー新規登録画面に遷移する
     visit new_user_registration_path
     # ユーザー情報を入力する
-    fill_in 'nickname', with: @user.nickname
-    fill_in 'email', with: @user.email
-    fill_in 'password', with: @user.password
-    fill_in 'password-confirmation', with: @user.password_confirmation
-    fill_in 'last-name', with: @user.last_name
-    fill_in 'first-name', with: @user.first_name
-    fill_in 'last-name-kana', with: @user.last_name_kana
-    fill_in 'first-name-kana', with: @user.first_name_kana
-    select '1930', from: 'user[birth_date(1i)]'
-    select '12', from: 'user[birth_date(2i)]'
-    select '12', from: 'user[birth_date(3i)]'
-    click_button '会員登録'
+    sign_in(@user)
     # トップページに移動する
     visit root_path
     # ログアウトボタンがあることを確認する
