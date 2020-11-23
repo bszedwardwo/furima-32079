@@ -1,5 +1,5 @@
 module SignInSupport
-  def sign_in(user)
+  def sign_in(_user)
     fill_in 'nickname', with: @user.nickname
     fill_in 'email', with: @user.email
     fill_in 'password', with: @user.password

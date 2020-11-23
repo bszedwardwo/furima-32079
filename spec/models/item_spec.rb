@@ -35,7 +35,7 @@ RSpec.describe Item, type: :model do
     it '商品名が41文字以上の時' do
       @item.name = 'adddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafo'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Name is too long (maximum is 40 characters)")
+      expect(@item.errors.full_messages).to include('Name is too long (maximum is 40 characters)')
     end
     it '商品の説明が空の時' do
       @item.info = nil
@@ -48,7 +48,7 @@ RSpec.describe Item, type: :model do
       adddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafo
       eihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafoauojeaoiughaouhfojafoadddddddddddddeiofajioejjjjafoeihgnauojeaoiughaouhfojafo'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Info is too long (maximum is 1000 characters)")
+      expect(@item.errors.full_messages).to include('Info is too long (maximum is 1000 characters)')
     end
     it '商品のカテゴリーが空の時' do
       @item.category_id = nil
@@ -83,17 +83,17 @@ RSpec.describe Item, type: :model do
     it '価格が300より少ない時' do
       @item.price = '299'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price must be greater than 300")
+      expect(@item.errors.full_messages).to include('Price must be greater than 300')
     end
     it '価格が9999999より多い時' do
       @item.price = '10000000'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price must be less than 9999999")
+      expect(@item.errors.full_messages).to include('Price must be less than 9999999')
     end
     it '価格が半角数字じゃない時' do
       @item.price = '渡辺'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is not a number")
+      expect(@item.errors.full_messages).to include('Price is not a number')
     end
   end
 end
