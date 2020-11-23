@@ -8,18 +8,6 @@ RSpec.describe Item, type: :model do
     it '必要な項目が全て埋まっていれば登録できる' do
       expect(@item).to be_valid
     end
-    it '商品名が40文字いないなら登録できる' do
-      @item.name = '後ディア'
-      expect(@item).to be_valid
-    end
-    it '商品説明が1000文字いないなら登録できる' do
-      @item.info = 'ゴディバ'
-      expect(@item).to be_valid
-    end
-    it '値段が300~9999999の間なら登録できる' do
-      @item.price = 999999
-      expect(@item).to be_valid
-    end
   end
   context '新規商品出品ができない時' do
     it '商品画像がない時' do
