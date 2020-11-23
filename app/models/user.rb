@@ -17,4 +17,6 @@ class User < ApplicationRecord
   end
 
   validates_format_of :password, with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i
+
+  has_many :items
 end
