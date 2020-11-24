@@ -4,8 +4,8 @@ FactoryBot.define do
     info                    { Faker::Name.name }
     price                   { Faker::Number.within(range: 300..9_999_999) }
     category_id             { Faker::Number.within(range: 1..10) }
-    sales_status_id         { Faker::Number.within(range: 1..10) }
-    shipping_fee_status_id  { Faker::Number.within(range: 1..6) }
+    sales_status_id         { Faker::Number.within(range: 1..6) }
+    shipping_fee_status_id  { Faker::Number.within(range: 1..2) }
     prefecture_id           { Faker::Number.within(range: 1..47) }
     scheduled_delivery_id   { Faker::Number.within(range: 1..3) }
     association             :user
