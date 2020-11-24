@@ -126,6 +126,7 @@
     <%= link_to '新規投稿商品', new_item_path, method: :get, class: "subtitle" %>
     <ul class='item-lists'>
 
+      <% if @item.exists? %>
       <% @item.each do |item| %>
       <li class='list'>
         <%= link_to "#" do %>
@@ -153,6 +154,7 @@
         </div>
         <% end %>
       </li>
+      <% end %>
       <% end %>
 
       <% unless @item.exists? %>
