@@ -20,18 +20,15 @@ class ItemsController < ApplicationController
   end
 
   def show
-    find_params
   end
 
   def edit
-      find_params
       unless current_user.id == @item.user_id
         redirect_to root_path
       end
   end
 
   def update
-    find_params
     if @item.update(item_params)
       redirect_to root_path
     else
