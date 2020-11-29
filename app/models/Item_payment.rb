@@ -3,6 +3,7 @@ class ItemPayment
   attr_accessor :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :item_id, :user_id, :token
 
   validates :postal_code, :prefecture_id, :city, :address, :phone_number, presence: true
+  validates :token, presence: true
 
   def save
     payment = Payment.create(user_id: user_id, item_id: item_id)
