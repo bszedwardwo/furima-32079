@@ -3,17 +3,11 @@ class PaymentsController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
-    if current_user.id == @item.user_id
-      redirect_to root_path
-    end
     @item_payment = ItemPayment.new()
   end
 
   def create
     @item = Item.find(params[:item_id])
-      if current_user.id == @item.user_id
-      redirect_to root_path
-    end
     @item_payment = ItemPayment.new(item_payment_params)
     if @item_payment.valid?
       pay_item
