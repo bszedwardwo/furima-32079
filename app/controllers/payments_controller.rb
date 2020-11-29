@@ -11,7 +11,6 @@ class PaymentsController < ApplicationController
       redirect_to root_path
     else
       @item = Item.find(params[:item_id])
-      @item_payment = ItemPayment.new()
       render :index
     end
   end
