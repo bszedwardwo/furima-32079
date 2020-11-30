@@ -23,8 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path if Payment.find_by(item_id: @item.id).present?
-    redirect_to root_path unless current_user.id == @item.user_id
+    redirect_to root_path if Payment.find_by(item_id: @item.id).present? || current_user.id != @item.user_id
   end
 
   def update
