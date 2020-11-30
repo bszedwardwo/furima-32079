@@ -11,7 +11,7 @@ class PaymentsController < ApplicationController
 
   def create
     @item = Item.find(params[:item_id])
-    if current_user.id == @item.user_id
+    if current_user.id == @item.user_id || Payment.find_by(item_id: @item.id).present?
       redirect_to root_path
     end
     @item_payment = ItemPayment.new(item_payment_params)
