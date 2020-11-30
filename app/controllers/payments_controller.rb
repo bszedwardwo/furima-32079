@@ -1,13 +1,14 @@
 class PaymentsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
-  before_action :find_params, only: [:index, :create]
 
   def index
+    @item = Item.find(params[:item_id])
     redirect_to root_path if current_user.id == @item.user_id || Payment.find_by(item_id: @item.id).present?
     @item_payment = ItemPayment.new
   end
 
   def create
+    @item = Item.find(params[:item_id])
     redirect_to root_path if current_user.id == @item.user_id || Payment.find_by(item_id: @item.id).present?
     @item_payment = ItemPayment.new(item_payment_params)
     if @item_payment.valid?
@@ -15,7 +16,7 @@ class PaymentsController < ApplicationController
       @item_payment.save
       redirect_to root_path
     else
-      find_params
+      @item = Item.find(params[:item_id])
       render :index
     end
   end
@@ -33,9 +34,5 @@ class PaymentsController < ApplicationController
       card: item_payment_params[:token],
       currency: 'jpy'
     )
-  end
-
-  def find_params
-    @item = Item.find(params[:id])
   end
 end
