@@ -25,9 +25,9 @@ RSpec.describe ItemPayment, type: :model do
       expect(@item_payment.errors.full_messages).to include("Postal code can't be blank")
     end
     it 'postal_codeにハイフンがないと保存できない' do
-      @item_payment.postal_code = "1234567"
+      @item_payment.postal_code = '1234567'
       @item_payment.valid?
-      expect(@item_payment.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      expect(@item_payment.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
     end
     it 'prefectureが空だと保存できない' do
       @item_payment.prefecture_id = nil
@@ -52,7 +52,7 @@ RSpec.describe ItemPayment, type: :model do
     it 'phone_numberが10or11桁以外だと保存できない' do
       @item_payment.phone_number = '123456789'
       @item_payment.valid?
-      expect(@item_payment.errors.full_messages).to include("Phone number is invalid. Input 10 or 11 number")
+      expect(@item_payment.errors.full_messages).to include('Phone number is invalid. Input 10 or 11 number')
     end
   end
 end

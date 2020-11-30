@@ -3,17 +3,13 @@ class PaymentsController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
-    if current_user.id == @item.user_id || Payment.find_by(item_id: @item.id).present?
-      redirect_to root_path
-    end
-    @item_payment = ItemPayment.new()
+    redirect_to root_path if current_user.id == @item.user_id || Payment.find_by(item_id: @item.id).present?
+    @item_payment = ItemPayment.new
   end
 
   def create
     @item = Item.find(params[:item_id])
-    if current_user.id == @item.user_id || Payment.find_by(item_id: @item.id).present?
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id == @item.user_id || Payment.find_by(item_id: @item.id).present?
     @item_payment = ItemPayment.new(item_payment_params)
     if @item_payment.valid?
       pay_item
@@ -32,12 +28,11 @@ class PaymentsController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: item_payment_params[:token],
       currency: 'jpy'
     )
   end
-
 end
