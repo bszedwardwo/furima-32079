@@ -25,9 +25,11 @@
 
     <% if signed_in? %>
     <% if current_user.id == @item.user.id %>
+    <% unless @item.payment.present? %>
     <%= link_to '商品の編集', edit_item_path(@item), method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
     <%= link_to '削除', item_path(@item), method: :delete, class:'item-destroy' %>
+    <% end %>
     <% end %>
 
     <% unless current_user.id == @item.user.id %>
