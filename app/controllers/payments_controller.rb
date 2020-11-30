@@ -1,14 +1,13 @@
 class PaymentsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :find_params, only: [:index, :create]
+  before_action :redirect_root_path, only: [:index, :create]
 
   def index
-    redirect_to root_path if current_user.id == @item.user_id || @item.payment.present?
     @item_payment = ItemPayment.new
   end
 
   def create
-    redirect_to root_path if current_user.id == @item.user_id || @item.payment.present?
     @item_payment = ItemPayment.new(item_payment_params)
     if @item_payment.valid?
       pay_item
@@ -36,5 +35,9 @@ class PaymentsController < ApplicationController
 
   def find_params
     @item = Item.find(params[:item_id])
+  end
+
+  def redirect_root_path
+    redirect_to root_path if current_user.id == @item.user_id || @item.payment.present?
   end
 end
