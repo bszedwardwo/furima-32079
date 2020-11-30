@@ -15,7 +15,6 @@ class PaymentsController < ApplicationController
       @item_payment.save
       redirect_to root_path
     else
-      find_params
       render :index
     end
   end
